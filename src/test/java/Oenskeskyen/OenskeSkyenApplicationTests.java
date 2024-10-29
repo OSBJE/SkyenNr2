@@ -1,4 +1,4 @@
-package dk.datacenter.oenskeskyen;
+package Oenskeskyen;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
