@@ -7,7 +7,7 @@ insert into usercustomer
 insert into usercustomer 
 (Fullname, Mail, UserPassWord) VALUES ('Lucas Modin', 'Lucas@Kea.com', 'Lucas1234');
 
-insert into WishList (WishListName) VALUES ('Lucas List') ,('Oskar List');
+insert into WishList (WishListName, UserID) VALUES ('Lucas List', 3) ,('Oskar List', 1);
 
 insert into Wish (WishName, WishPrice, WishLink) VALUES ('Sko',99.99,'URLLink1');  
 insert into Wish (WishName, WishPrice, WishLink) VALUES ('bil',10000.01,'URLLinkBil');

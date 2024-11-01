@@ -1,5 +1,6 @@
 package Oenskeskyen.Repository;
 
+import Oenskeskyen.Model.DBConnection;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
@@ -18,7 +19,6 @@ public class OenskeSkyenRepository {
 
     private Connection conn;
 
-//**hehehe
 
     /// ********************************* Constructor and set-up ************************** ///
     public OenskeSkyenRepository(){
@@ -28,9 +28,11 @@ public class OenskeSkyenRepository {
     //remove problem with beans.
     @PostConstruct
     public void setConn() {
-        //this.conn = DBConnection.getConnection(dbUrl,dbUsername,dbPassword);
+        this.conn = DBConnection.getConnection(dbUrl,dbUsername,dbPassword);
     }
 
     /// **************************** Add and modify database functions ******************** ///
+
+
 
 }
