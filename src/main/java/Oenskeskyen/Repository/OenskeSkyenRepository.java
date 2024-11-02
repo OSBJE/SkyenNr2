@@ -1,6 +1,7 @@
 package Oenskeskyen.Repository;
 
 import Oenskeskyen.Model.DBConnection;
+import Oenskeskyen.Model.User;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
@@ -20,7 +21,7 @@ public class OenskeSkyenRepository {
     private String dbPassword;
 
     private Connection conn;
-
+    private PreparedStatement stmt;
 
     /// ********************************* Constructor and set-up ************************** ///
     public OenskeSkyenRepository(){
@@ -32,6 +33,8 @@ public class OenskeSkyenRepository {
     public void setConn() {
         this.conn = DBConnection.getConnection(dbUrl,dbUsername,dbPassword);
     }
+
+
 
     /// **************************** Add and modify database functions ******************** ///
 
@@ -53,5 +56,19 @@ public class OenskeSkyenRepository {
 
     }
 
+    public User getUser(){
+        User userObj = null;
+
+        try{
+            String sqlString ="SELECT a.Fullname as name a.Mail as mail, c.UserPassWord as password FROM usercustomer a";
+
+            PreparedStatement prep = conn.prepareStatement(sqlString);
+
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
+        }
+
+        return
+    }
 
 }
