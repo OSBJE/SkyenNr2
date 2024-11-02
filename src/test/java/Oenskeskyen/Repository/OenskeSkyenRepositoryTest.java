@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @SpringBootTest
 @ActiveProfiles("h2")
 public class OenskeSkyenRepositoryTest {
@@ -22,7 +24,9 @@ public class OenskeSkyenRepositoryTest {
 
         repository.saveNewUser(Fullname,mail,password);
 
-        repository.getUser(Fullname);
+        User obj = repository.getUser(Fullname);
+
+        assertEquals("Kea test",obj.getFullName());
 
     }
 }
