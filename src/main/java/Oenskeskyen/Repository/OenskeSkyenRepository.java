@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 @Repository
 public class OenskeSkyenRepository {
@@ -33,6 +35,23 @@ public class OenskeSkyenRepository {
 
     /// **************************** Add and modify database functions ******************** ///
 
+
+    public void saveNewUser(String fullname, String mail, String userPassword){
+
+        try{
+            String sqlString ="insert into usercustomer (FullName, Mail, UserPassWord) VALUES (?, ?,?)";
+
+            PreparedStatement stmt = conn.prepareStatement(sqlString);
+            stmt.setString(1,fullname);
+            stmt.setString(2,mail);
+            stmt.setString(3,userPassword);
+            stmt.executeUpdate();
+
+        } catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+
+    }
 
 
 }
