@@ -6,9 +6,7 @@ import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 @Repository
 public class OenskeSkyenRepository {
@@ -56,19 +54,36 @@ public class OenskeSkyenRepository {
 
     }
 
-    public User getUser(){
-        User userObj = null;
+    public User getUser(String UserFullName){
 
         try{
-            String sqlString ="SELECT a.Fullname as name a.Mail as mail, c.UserPassWord as password FROM usercustomer a";
+            String sqlString ="SELECT UserID, FullName, Mail, UserPassWord FROM usercustomer where FullName = ? ";
 
-            PreparedStatement prep = conn.prepareStatement(sqlString);
+            PreparedStatement stmt = conn.prepareStatement(sqlString);
+            stmt.setString(1,UserFullName);
 
-        } catch (RuntimeException e) {
+            Statement prep = conn.createStatement();
+
+            ResultSet resultSet = prep.executeQuery(sqlString);
+
+
+            int userID = resultSet.getInt(1);
+            String userName = resultSet.getString(2);
+            String userMail = resultSet.getString(3);
+            String userPassword = resultSet.getString(4);
+
+            User userOjb = new User();
+            userOjb.setUserId(userID);
+            userOjb.setFullName(userName);
+            userOjb.setMail(userMail);
+            userOjb.setPassWord(userPassword);
+
+            return userOjb;
+
+        } catch (RuntimeException | SQLException e) {
             throw new RuntimeException(e);
         }
 
-        return
     }
 
 }
