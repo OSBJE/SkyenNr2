@@ -16,6 +16,13 @@ public class User {
         this.passWord = passWord;
     }
 
+    public User (int id, String fullName, String mail, String passWord){
+        this.id = id;
+        this.fullName = fullName;
+        this.mail = mail;
+        this.passWord = passWord;
+    }
+
     //************************* Setter ang getters *******************************//
 
     public String getFullName() {
@@ -44,5 +51,9 @@ public class User {
 
     public int getId(){
         return id;
+    }
+
+    public void setUserId(int id){
+        this.id = id;
     }
 }
