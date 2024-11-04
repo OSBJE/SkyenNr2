@@ -11,6 +11,7 @@ import java.sql.*;
 @Repository
 public class OenskeSkyenRepository {
 
+
     @Value("${spring.datasource.url}")
     private String dbUrl;
     @Value("${spring.datasource.username}")
@@ -19,7 +20,8 @@ public class OenskeSkyenRepository {
     private String dbPassword;
 
     private Connection conn;
-    private PreparedStatement stmt;
+
+
 
     /// ********************************* Constructor and set-up ************************** ///
     public OenskeSkyenRepository(){
@@ -27,6 +29,7 @@ public class OenskeSkyenRepository {
 
     //PostConstruct runes functions after we have generated the constructor
     //remove problem with beans.
+
     @PostConstruct
     public void setConn() {
         this.conn = DBConnection.getConnection(dbUrl,dbUsername,dbPassword);
