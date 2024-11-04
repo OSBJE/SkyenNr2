@@ -17,7 +17,7 @@ public class OenskeSkyenRepositoryTest {
     OenskeSkyenRepository repository;
 
     @Test
-    void testSaveUsercustomer(){
+    void testSaveAndGetUserCustomer(){
         String Fullname = "Kea";
         String mail = "Kea@mail.com";
         String password = "Kea1234";
@@ -27,6 +27,5 @@ public class OenskeSkyenRepositoryTest {
         User obj = repository.getUser("Kea");
 
         assertEquals("Kea",obj.getFullName());
-
     }
 }

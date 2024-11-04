@@ -39,7 +39,6 @@ public class OenskeSkyenRepository {
 
     /// **************************** Add and modify database functions ******************** ///
 
-
     public void saveNewUser(String fullname, String mail, String userPassword){
 
         try{
