@@ -58,34 +58,34 @@ public class OenskeSkyenRepository {
     }
 
     public User getUser(String UserFullName){
+        User obj = null;
 
         try{
-            String sqlString ="SELECT UserID, FullName, Mail, UserPassWord FROM usercustomer where FullName = ? ";
+            String sqlString ="SELECT UserID, FullName, Mail, UserPassWord FROM usercustomer where FullName = ?";
 
             PreparedStatement stmt = conn.prepareStatement(sqlString);
             stmt.setString(1,UserFullName);
 
-            Statement prep = conn.createStatement();
-
-            ResultSet resultSet = prep.executeQuery(sqlString);
+            ResultSet resultSet = stmt.executeQuery();
 
 
-            int userID = resultSet.getInt(1);
-            String userName = resultSet.getString(2);
-            String userMail = resultSet.getString(3);
-            String userPassword = resultSet.getString(4);
+            while(resultSet.next()) {
+                int userID = resultSet.getInt(1);
+                String userName = resultSet.getString(2);
+                String userMail = resultSet.getString(3);
+                String userPassword = resultSet.getString(4);
 
-            User userOjb = new User();
-            userOjb.setUserId(userID);
-            userOjb.setFullName(userName);
-            userOjb.setMail(userMail);
-            userOjb.setPassWord(userPassword);
 
-            return userOjb;
+                if (obj == null){
+                    obj = new User(userID,userName,userMail,userPassword);
+                }
+
+            }
 
         } catch (RuntimeException | SQLException e) {
             throw new RuntimeException(e);
         }
+        return obj;
 
     }
 

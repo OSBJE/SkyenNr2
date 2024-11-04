@@ -18,15 +18,15 @@ public class OenskeSkyenRepositoryTest {
 
     @Test
     void testSaveUsercustomer(){
-        String Fullname = "Kea test";
-        String mail = "Keatestmail";
+        String Fullname = "Kea";
+        String mail = "Kea@mail.com";
         String password = "Kea1234";
 
         repository.saveNewUser(Fullname,mail,password);
 
-        User obj = repository.getUser(Fullname);
+        User obj = repository.getUser("Kea");
 
-        assertEquals("Kea test",obj.getFullName());
+        assertEquals("Kea",obj.getFullName());
 
     }
 }

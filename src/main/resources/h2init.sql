@@ -15,7 +15,7 @@ create table WishList(
                          WishListID int auto_increment primary key,
                          WishListName varchar(100) not null,
                          UserID INT,
-                         constraint fk_UserId FOREIGN KEY (UserID) REFERENCES UserCustomer(UserID) ON DELETE CASCADE
+                         constraint fk_UserId FOREIGN KEY (UserID) REFERENCES usercustomer(UserID) ON DELETE CASCADE
 );
 
 create table Wish(
@@ -28,7 +28,7 @@ create table Wish(
 create table User_WishList(
                               UserID int,
                               WishListID int,
-                              FOREIGN KEY (UserID) REFERENCES UserCustomer(UserID) ON DELETE CASCADE,
+                              FOREIGN KEY (UserID) REFERENCES usercustomer(UserID) ON DELETE CASCADE,
                               FOREIGN KEY (WishListID) REFERENCES WishList(WishListID) ON DELETE CASCADE
 );
 
