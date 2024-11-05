@@ -8,28 +8,58 @@
 <body>
     <div class="container">
         <nav class="navigation">
-            <ul>
+            <div class="left-container">
+                <a class="home-link" href="index.html">
+                    <img class="logo-link" src="/images/cloudLogo.png" alt="logo">
+                </a>
+                <img class="text-logo" src="/images/logoTextImg.png" alt="textLogo">
+            </div>
+            <ul class="right-links">
                 <li>Home</li>
                 <li>About</li>
-                <li>Login</li>
+                <a class="login-link">
+                    <li>Login</li>
+                </a>
+                <a class="create-user-link">
+                    <li>Sign up</li>
+                </a>
             </ul>
         </nav>
 
-        <section class="image-banner">
-
+        <section class="banner-text">
+            <div class="header-text">
+            <h2>All of Your Wishes</h2>
+            <h2>Organized Easily.</h2>
+            </div>
         </section>
 
-        <section class="info">
 
+        <section class="image-banner">
+            <div class="banner-wrapper">
+                <img class="image-front-page" src="/images/phoneLogo.png" alt="banner-image">
+            </div>
         </section>
 
         <footer class="info-foot">
-            <p>Need help? Contact: businessmail@wishinglist.dk or +45 12 34 56 78</p>
+            <div class="socials-container">
+                <a href="https://www.instagram.com/lucas_modj/">
+                    <ion-icon name="logo-instagram"></ion-icon>
+                </a>
+
+                <a href="https://www.facebook.com">
+                    <ion-icon name="logo-facebook"></ion-icon>
+                </a>
+
+                <a href="https://www.x.com">
+                    <ion-icon name="logo-twitter"></ion-icon>
+                </a>
+            </div>
         </footer>
-
-
-
     </div>
 
+
+    <!-- scripts copied from ion-icons to make the icons work -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
