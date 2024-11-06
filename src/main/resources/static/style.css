@@ -149,6 +149,13 @@ ion-icon {
 
 }
 
+.text-banner-wrapper {
+
+
+}
+
+
+
 .banner-wrapper {
     display: flex;
     align-items: center;
@@ -156,6 +163,7 @@ ion-icon {
     width: 100%;
     overflow: hidden;
     height: 100%;
+    position: relative;
 }
 
 .banner-wrapper .image-front-page {
@@ -163,6 +171,7 @@ ion-icon {
     height: auto;
     max-height: 830px;
     object-fit: cover;
+    position: relative;
 }
 
 

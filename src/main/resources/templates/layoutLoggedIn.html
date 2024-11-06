@@ -6,5 +6,48 @@
 </head>
 <body>
 
+<header>
+    <nav class="navigation" th:fragment="header">
+        <div class="left-container">
+            <a class="home-link" href="/static/index.html">
+                <img class="logo-link" src="/images/cloudLogo.png" alt="logo">
+            </a>
+            <img class="text-logo" src="/images/logoTextImg.png" alt="textLogo">
+        </div>
+        <ul class="right-links">
+            <li>Home</li>
+            <li>Wishlists</li>
+            <li>Wishes</li>
+            <li>Profile</li>
+            <a class="create-user-link">
+                <li>Logout</li>
+            </a>
+        </ul>
+    </nav>
+</header>
+
+
+
+<footer class="info-foot" th:fragment="footer">
+    <div class="socials-container">
+        <a href="https://www.instagram.com/lucas_modj/">
+            <ion-icon name="logo-instagram"></ion-icon>
+        </a>
+
+        <a href="https://www.facebook.com">
+            <ion-icon name="logo-facebook"></ion-icon>
+        </a>
+
+        <a href="https://www.x.com">
+            <ion-icon name="logo-twitter"></ion-icon>
+        </a>
+    </div>
+    <!-- scripts copied from ion-icons to make the icons work -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</footer>
+
+
+
 </body>
 </html>
