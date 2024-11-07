@@ -19,18 +19,27 @@ public class OenskeSkyenController {
         this.oenskeSkyenService = service;
     }
 
-    @GetMapping("/newUser")
+    @GetMapping("/login")
     public String creatNewUser(Model model){
         User obj = new User();
         model.addAttribute("obj", obj);
-        return "newUser";
+        return "login";
     }
+
+    @GetMapping("/signup")
+    public String getLoginInfo(Model model){
+        User obj = new User();
+        model.addAttribute("obj", obj);
+        return "create-user";
+    }
+
 
     @PostMapping("/saveUser")
     public String saveNewUser(@ModelAttribute User userObj){
         oenskeSkyenService.saveUserCostumer(userObj);
         return "newUser";
     }
+
 
 
 }

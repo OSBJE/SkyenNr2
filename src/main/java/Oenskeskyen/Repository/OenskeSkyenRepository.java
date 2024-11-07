@@ -88,4 +88,8 @@ public class OenskeSkyenRepository {
 
     }
 
+    public void getUserInfo(){
+
+    }
+
 }

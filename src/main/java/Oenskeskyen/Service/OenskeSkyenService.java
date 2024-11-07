@@ -22,4 +22,8 @@ public class OenskeSkyenService {
     public void saveUserCostumer(User obj){
         oenskeSkyenRepository.saveNewUser(obj.getFullName(), obj.getMail(), obj.getPassWord());
     }
+
+    public void getUserInfo(){
+
+    }
 }
