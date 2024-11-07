@@ -22,37 +22,60 @@ public class SessionController {
         this.userService = userService;
     }
 
-    @GetMapping("")
-    public String frontPage(){
-        return "index";
-    }
+//    @GetMapping("")
+//    public String frontPage(){
+//        return "index";
+//    }
 
     @GetMapping("/newUser")
     public String creatNewUser(Model model){
         User obj = new User();
         model.addAttribute("obj", obj);
-        return "newUser";
+        return "create-user";
     }
 
     @PostMapping("/saveUser")
     public String saveNewUser(@ModelAttribute User userObj){
         userService.saveUserCostumer(userObj);
-        return "newUser";
+        return "redirect:/";
     }
 
-
     @GetMapping("/login")
-    public String loginCheck (@RequestParam("mail") String mail, @RequestParam("password") String password, HttpSession session, Model model){
-        String userMail = userService.getUser(mail).getMail();
-        if(userMail.equals(mail)){
-            session.setAttribute("user",userService.getUser(mail));
+    public String login(Model model){
+        return "login";
+    }
 
-            return "redirect:/costumer-page";
+    @PostMapping("/loginValidation")
+    public String loginCheck (@RequestParam("mail") String mail, @RequestParam("password") String password,
+                              HttpSession session, Model model){
+       User user = userService.getUser(mail);
+       if (user != null && user.getPassWord().equals(password)) {
+           session.setAttribute("user", user);
+           return "redirect:/costumer-page";
+       } else {
+           model.addAttribute("error", "Invalid username or password");
+           return "login";
+       }
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/login";
+    }
+
+    @GetMapping("/costumer-page")
+    public String costumerPage(Model model, HttpSession session){
+        User user = (User) session.getAttribute("user");
+        if(user != null){
+            model.addAttribute("user", user);
+            return "costumer-page";
         } else {
-            model.addAttribute("sessionId",session.getId());
             return "redirect:/login";
         }
     }
+
+
 
     @GetMapping("/set_session_id")
     public String setSessionId(HttpServletRequest request){

@@ -1,14 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Customer Page</title>
 </head>
 <body>
-
-<h1>Session ID</h1>
-
-<p>The session ID is: <span th:text="${sessionId}"></span> </p>
-
+<h1>Welcome, <span th:text="${session.user.fullName}"></span>!</h1>
+<a href="/logout">Logout</a>
 </body>
 </html>

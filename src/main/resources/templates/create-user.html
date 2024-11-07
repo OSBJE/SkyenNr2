@@ -7,10 +7,25 @@
 </head>
 <body>
 <div>
-<header th:replace="~{layoutUnLogged :: header}"></header>
+    <header th:replace="~{layoutUnLogged :: header}"></header>
+    <h1>Sign up</h1>
+    <form th:action="@{/saveUser}" th:object="${obj}" method="post">
+        <div class="form-group">
+            <label for="full-name">Full name</label>
+            <input class="text-input" type="text" id="full-name" th:field="*{fullName}">
+
+            <label for="email">E-mail</label>
+            <input class="text-input" type="email" id="email" th:field="*{mail}">
+
+            <label for="password">Password</label>
+            <input class="text-input" type="password" id="password" th:field="*{passWord}">
+        </div>
+        <button type="submit">Create user</button>
+    </form>
 
 
-<footer th:replace="~{layoutUnLogged :: footer}"></footer>
+
+    <footer th:replace="~{layoutUnLogged :: footer}"></footer>
 </div>
 </body>
 </html>
