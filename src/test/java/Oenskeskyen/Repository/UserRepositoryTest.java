@@ -23,7 +23,7 @@ public class UserRepositoryTest {
 
         repository.saveNewUser(Fullname,mail,password);
 
-        User obj = repository.getUser("Kea");
+        User obj = repository.getUser("Kea@mail.com");
 
         assertEquals("Kea",obj.getFullName());
     }

@@ -58,14 +58,14 @@ public class UserRepository {
 
     }
 
-    public User getUser(String UserFullName){
+    public User getUser(String mail){
         User obj = null;
 
         try{
-            String sqlString ="SELECT UserID, FullName, Mail, UserPassWord FROM usercustomer where FullName = ?";
+            String sqlString ="SELECT UserID, FullName, Mail, UserPassWord FROM usercustomer where Mail = ?";
 
             PreparedStatement stmt = conn.prepareStatement(sqlString);
-            stmt.setString(1,UserFullName);
+            stmt.setString(1,mail);
 
             ResultSet resultSet = stmt.executeQuery();
 

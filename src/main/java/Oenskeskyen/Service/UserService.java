@@ -19,8 +19,8 @@ public class UserService {
 
 
     /// **************************** Add and modify database functions ******************** ///
-    public User getUser(String FullName){
-        return userRepository.getUser(FullName);
+    public User getUser(String mail){
+        return userRepository.getUser(mail);
     }
 
     public void saveUserCostumer(User obj){

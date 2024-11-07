@@ -3,6 +3,7 @@ import Oenskeskyen.Model.User;
 
 
 import Oenskeskyen.Service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,17 +40,26 @@ public class SessionController {
         return "newUser";
     }
 
-    /*
+
     @GetMapping("/login")
-    public String loginCheck (@RequestParam("mail") String mail, @RequestParam("password") String password, HttpSession session){
-        if(userService.getUser(mail)){
+    public String loginCheck (@RequestParam("mail") String mail, @RequestParam("password") String password, HttpSession session, Model model){
+        String userMail = userService.getUser(mail).getMail();
+        if(userMail.equals(mail)){
             session.setAttribute("user",userService.getUser(mail));
-            return "redirect:/CostumerPage";
+
+            return "redirect:/costumer-page";
         } else {
-            return "redirect:/index";
+            model.addAttribute("sessionId",session.getId());
+            return "redirect:/login";
         }
     }
-    */
+
+    @GetMapping("/set_session_id")
+    public String setSessionId(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        session.setAttribute("sessionId", session.getId());
+        return "redirect:";
+    }
 
 
 }
