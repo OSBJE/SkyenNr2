@@ -88,4 +88,16 @@ public class OenskeSkyenRepository {
 
     }
 
+    public void saveNewWishList(String name, String description){
+
+        try{
+            String sqlString = "insert into wishlist (WishListName, Mail, UserPassWord) VALUES (?, ?,?)";
+
+
+        } catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+
+    }
+
 }
