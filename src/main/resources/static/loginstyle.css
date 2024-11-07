@@ -66,7 +66,6 @@ main {
 }
 
 .remember-forgot a{
-    color: white;
     text-decoration: none;
 }
 
@@ -93,12 +92,11 @@ main {
     margin-top: 20px;
 }
 
-.register-link p a {
-    color: white;
+.register-link a {
     text-decoration: none;
     font-weight: 500;
 }
 
-.register-link p a:hover{
+.register-link a:hover{
     text-decoration: underline;
 }
