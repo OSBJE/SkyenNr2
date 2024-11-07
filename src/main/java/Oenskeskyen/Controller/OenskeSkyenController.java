@@ -13,24 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/welcome")
 public class OenskeSkyenController {
 
-    private final OenskeSkyenService oenskeSkyenService;
-
-    public OenskeSkyenController(OenskeSkyenService service){
-        this.oenskeSkyenService = service;
-    }
-
-    @GetMapping("/newUser")
-    public String creatNewUser(Model model){
-        User obj = new User();
-        model.addAttribute("obj", obj);
-        return "newUser";
-    }
-
-    @PostMapping("/saveUser")
-    public String saveNewUser(@ModelAttribute User userObj){
-        oenskeSkyenService.saveUserCostumer(userObj);
-        return "newUser";
-    }
 
 
 }

@@ -39,57 +39,8 @@ public class OenskeSkyenRepository {
 
     /// **************************** Add and modify database functions ******************** ///
 
-    public void saveNewUser(String fullname, String mail, String userPassword){
-
-        try{
-            String sqlString ="insert into usercustomer (FullName, Mail, UserPassWord) VALUES (?, ?,?)";
-
-            PreparedStatement stmt = conn.prepareStatement(sqlString);
-            stmt.setString(1,fullname);
-            stmt.setString(2,mail);
-            stmt.setString(3,userPassword);
-            stmt.executeUpdate();
-
-        } catch (SQLException e){
-            throw new RuntimeException(e);
-        }
-
-    }
-
-    public User getUser(String UserFullName){
-        User obj = null;
-
-        try{
-            String sqlString ="SELECT UserID, FullName, Mail, UserPassWord FROM usercustomer where FullName = ?";
-
-            PreparedStatement stmt = conn.prepareStatement(sqlString);
-            stmt.setString(1,UserFullName);
-
-            ResultSet resultSet = stmt.executeQuery();
-
-
-            while(resultSet.next()) {
-                int userID = resultSet.getInt(1);
-                String userName = resultSet.getString(2);
-                String userMail = resultSet.getString(3);
-                String userPassword = resultSet.getString(4);
-
-
-                if (obj == null){
-                    obj = new User(userID,userName,userMail,userPassword);
-                }
-
-            }
-
-        } catch (RuntimeException | SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return obj;
-
-    }
-
     public void saveNewWishList(String name, String description){
-
+        /*
         try{
             String sqlString = "insert into wishlist (WishListName, Mail, UserPassWord) VALUES (?, ?,?)";
 
@@ -98,6 +49,8 @@ public class OenskeSkyenRepository {
             throw new RuntimeException(e);
         }
 
+
+         */
     }
 
 }
