@@ -45,6 +45,16 @@ public class SessionController {
         return "login";
     }
 
+    @GetMapping("/wishlist")
+    public String wishlist(Model model){
+        return "wishlist";
+    }
+
+    @GetMapping("/profile")
+    public String profile(Model model){
+        return "profile";
+    }
+
     @PostMapping("/loginValidation")
     public String loginCheck (@RequestParam("mail") String mail, @RequestParam("password") String password,
                               HttpSession session, Model model){

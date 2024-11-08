@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head th:fragment="head">
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
@@ -15,18 +16,17 @@
             <img class="text-logo" src="/Images/logoTextImg.png" alt="textLogo">
         </div>
         <ul class="right-links">
-            <a href="/index.html"><li>Home</li></a>
-            <li>Wishlists</li>
-            <li>Wishes</li>
-            <li>Profile</li>
-            <a class="create-user-link">
-                <li>Logout</li>
-            </a>
+            <a href="/costumer-page"><li>Home</li></a>
+            <a href="/wishlist"><li>Wishlists</li></a>
+            <a href="/profile"><li>Profile</li></a>
+            <a href="logout" class="create-user-link"><li>Logout</li></a>
         </ul>
     </nav>
 </header>
 
-
+<main>
+    <div class="main-content" th:replace="~{::content}"></div>
+</main>
 
 <footer class="info-foot" th:fragment="footer">
     <div class="socials-container">
@@ -46,8 +46,6 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </footer>
-
-
 
 </body>
 </html>
