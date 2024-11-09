@@ -39,7 +39,11 @@ public class UserService {
         return userRepository.getAllWishLists(userID);
     }
 
-    public WishList getWishById(int wishListID){
-        return userRepository.getWishById(wishListID);
+    public WishList getWishListById(int wishListID){
+        return userRepository.getWishListById(wishListID);
+    }
+
+    public List<Wish> getAllWishes(int wishListID){
+        return userRepository.getAllWishes(wishListID);
     }
 }

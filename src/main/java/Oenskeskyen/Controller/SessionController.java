@@ -96,9 +96,10 @@ public class SessionController {
 
     @GetMapping("/viewWishList/{wishListID}")
     public String viewWishList(@PathVariable("wishListID") int wishListID, Model model){
-        WishList wishList = userService.getWishById(wishListID);
+        WishList wishList = userService.getWishListById(wishListID);
         if(wishList != null){
             model.addAttribute("wishlist", wishList);
+            model.addAttribute("getAllWishes", userService.getAllWishes(wishListID));
             return "viewWishList";
         } else {
             return "redirect:/customer-page";

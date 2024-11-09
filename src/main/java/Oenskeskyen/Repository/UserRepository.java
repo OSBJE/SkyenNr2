@@ -2,6 +2,7 @@ package Oenskeskyen.Repository;
 
 import Oenskeskyen.Model.DBConnection;
 import Oenskeskyen.Model.User;
+import Oenskeskyen.Model.Wish;
 import Oenskeskyen.Model.WishList;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
@@ -109,7 +110,7 @@ public class UserRepository {
         return usersWishLists;
     }
 
-    public WishList getWishById(int wishListID) {
+    public WishList getWishListById(int wishListID) {
         String sql = "SELECT WishListName, WishListDescription, WishListID FROM WishList WHERE WishListID = ?";
         WishList wishList = null;
         try{
@@ -128,6 +129,36 @@ public class UserRepository {
             throw new RuntimeException(e);
         }
         return wishList;
+    }
+
+    public List<Wish> getAllWishes(int wishListId){
+        List<Wish> listOfWishes = new ArrayList<>();
+        String sql1 = "SELECT WishID FROM Wishlist_Wishes WHERE WishListID = ?";
+
+        try{
+            PreparedStatement stmt1 = conn.prepareStatement(sql1);
+            stmt1.setInt(1, wishListId);
+            ResultSet resultSet1 = stmt1.executeQuery();
+
+            String sql2 = "SELECT WishID, WishName, WishPrice, WishLink FROM Wish WHERE WishID = ?";
+            PreparedStatement stmt2 = conn.prepareStatement(sql2);
+
+            while(resultSet1.next()){
+                stmt2.setInt(1, resultSet1.getInt(1));
+                ResultSet resultSet2 = stmt2.executeQuery();
+                while(resultSet2.next()){
+                    int wishid = resultSet2.getInt(1);
+                    String wishName = resultSet2.getString(2);
+                    double wishPrice = resultSet2.getDouble(3);
+                    String wishLink = resultSet2.getString(4);
+                    Wish wish = new Wish(wishName, wishPrice, wishLink, wishid);
+                    listOfWishes.add(wish);
+                }
+            }
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+        return listOfWishes;
     }
 
     public User getUser(String mail){

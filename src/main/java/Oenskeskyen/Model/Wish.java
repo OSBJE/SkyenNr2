@@ -10,6 +10,9 @@ public class Wish {
 
     //************************* Konstructors *******************************//
 
+    public Wish(){
+    }
+
     public Wish(String name){
         this.name = name;
     }

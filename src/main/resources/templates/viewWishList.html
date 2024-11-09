@@ -9,7 +9,11 @@
 <header th:replace="~{layoutLoggedIn :: header}"></header>
 
 <main>
-
+    <div th:each="wish : ${getAllWishes}">
+        <div>
+            <p th:text="${wish.name}"></p>
+        </div>
+    </div>
 </main>
 
 <footer th:replace="~{layoutLoggedIn :: footer}"></footer>
