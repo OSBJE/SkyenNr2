@@ -8,10 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class SessionController {
@@ -90,12 +87,23 @@ public class SessionController {
         User user = (User) session.getAttribute("user");
         if(user != null){
             model.addAttribute("user", user);
+            model.addAttribute("getAllWishLists", userService.getAllWishLists(user.getId()));
             return "customer-page";
         } else {
             return "redirect:/login";
         }
     }
 
+    @GetMapping("/viewWishList/{wishListID}")
+    public String viewWishList(@PathVariable("wishListID") int wishListID, Model model){
+        WishList wishList = userService.getWishById(wishListID);
+        if(wishList != null){
+            model.addAttribute("wishlist", wishList);
+            return "viewWishList";
+        } else {
+            return "redirect:/customer-page";
+        }
+    }
 
 
     @GetMapping("/set_session_id")

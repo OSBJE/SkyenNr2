@@ -5,6 +5,7 @@ import java.util.List;
 
 public class WishList {
 
+    private int wishListId;
     private String name;
     private String description;
     private List<Wish> wishList = new ArrayList<>();
@@ -18,6 +19,14 @@ public class WishList {
     }
 
     //************************* Setter ang getters *******************************//
+
+    public int getWishListId() {
+        return wishListId;
+    }
+
+    public void setWishListId(int wishListId) {
+        this.wishListId = wishListId;
+    }
 
     public String getName() {
         return name;
