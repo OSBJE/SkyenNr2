@@ -44,7 +44,7 @@ public class UserRepository {
     public void saveNewUser(String fullname, String mail, String userPassword){
 
         try{
-            String sqlString ="insert into usercustomer (FullName, Mail, UserPassWord) VALUES (?, ?,?)";
+            String sqlString ="insert into usercustomer (FullName, Mail, UserPassWord) VALUES (?, ?, ?)";
 
             PreparedStatement stmt = conn.prepareStatement(sqlString);
             stmt.setString(1,fullname);
@@ -55,7 +55,22 @@ public class UserRepository {
         } catch (SQLException e){
             throw new RuntimeException(e);
         }
+    }
 
+    public void saveNewWishList(String wishListName, String description, int userID){
+
+        try{
+            String sqlString = "insert into WishList (WishListName, WishListDescription, UserID) VALUES (?, ?, ?)";
+
+            PreparedStatement stmt = conn.prepareStatement(sqlString);
+            stmt.setString(1, wishListName);
+            stmt.setString(2, description);
+            stmt.setInt(3, userID);
+            stmt.executeUpdate();
+
+        } catch (SQLException e){
+            throw new RuntimeException(e);
+        }
     }
 
     public User getUser(String mail){

@@ -1,14 +1,10 @@
 package Oenskeskyen.Controller;
 
-import Oenskeskyen.Model.User;
-import Oenskeskyen.Service.OenskeSkyenService;
 import Oenskeskyen.Service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -28,7 +24,7 @@ public class OenskeSkyenController {
         session.setAttribute("user","getmail");
         String sessionId = (String) session.getAttribute("user");
         model.addAttribute("sessionId",sessionId);
-        return "costumer-page";
+        return "customer-page";
     }
 
 

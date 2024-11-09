@@ -2,6 +2,7 @@ package Oenskeskyen.Controller;
 import Oenskeskyen.Model.User;
 
 
+import Oenskeskyen.Model.WishList;
 import Oenskeskyen.Service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -22,11 +23,6 @@ public class SessionController {
         this.userService = userService;
     }
 
-//    @GetMapping("")
-//    public String frontPage(){
-//        return "index";
-//    }
-
     @GetMapping("/newUser")
     public String creatNewUser(Model model){
         User obj = new User();
@@ -40,15 +36,30 @@ public class SessionController {
         return "redirect:/";
     }
 
+    @GetMapping("/wishlists")
+    public String createNewWishList(Model model){
+        WishList obj = new WishList();
+        model.addAttribute("obj", obj);
+        return "addWishList";
+    }
+
+    @PostMapping("/saveWishList")
+    public String saveWishList(@ModelAttribute WishList wishListObj, HttpSession session){
+        User user =  (User)session.getAttribute("user");
+        if(user != null){
+            int userID = user.getId();
+            userService.saveWishList(wishListObj, userID);
+            return "redirect:/customer-page";
+        } else {
+            return "redirect:/login";
+        }
+    }
+
     @GetMapping("/login")
     public String login(Model model){
         return "login";
     }
 
-    @GetMapping("/wishlist")
-    public String wishlist(Model model){
-        return "wishlist";
-    }
 
     @GetMapping("/profile")
     public String profile(Model model){
@@ -61,7 +72,7 @@ public class SessionController {
        User user = userService.getUser(mail);
        if (user != null && user.getPassWord().equals(password)) {
            session.setAttribute("user", user);
-           return "redirect:/costumer-page";
+           return "redirect:/customer-page";
        } else {
            model.addAttribute("error", "Invalid username or password");
            return "login";
@@ -74,12 +85,12 @@ public class SessionController {
         return "redirect:/login";
     }
 
-    @GetMapping("/costumer-page")
+    @GetMapping("/customer-page")
     public String costumerPage(Model model, HttpSession session){
         User user = (User) session.getAttribute("user");
         if(user != null){
             model.addAttribute("user", user);
-            return "costumer-page";
+            return "customer-page";
         } else {
             return "redirect:/login";
         }

@@ -9,6 +9,9 @@ public class WishList {
     private String description;
     private List<Wish> wishList = new ArrayList<>();
 
+    public WishList(){
+    }
+
     public WishList(String name, String description){
         this.name = name;
         this.description = description;
