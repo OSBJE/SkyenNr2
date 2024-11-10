@@ -85,7 +85,7 @@ public class UserRepository {
             stmt.setString(1, name);
             stmt.setDouble(2, price);
             stmt.setString(3, urlLink);
-            stmt.executeQuery();
+            stmt.executeUpdate();
 
             ResultSet generatedKeys = stmt.getGeneratedKeys();
             int wishID = -1;
@@ -100,8 +100,6 @@ public class UserRepository {
                 stmt2.setInt(2, wishID);
                 stmt2.executeUpdate();
             }
-
-
         }catch(SQLException e){
             throw new RuntimeException(e);
         }

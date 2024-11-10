@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -10,17 +10,17 @@
 
 <main>
     <div class="banner">
-        <h1>Welcome, <span th:text="${session.user.fullName}"></span>!</h1>
+        <h1>Wishlist: <span th:text="${wishlist.name}"></span>!</h1>
         <img src="" alt="">
     </div>
     <div th:each="wish : ${getAllWishes}">
         <div class="wish-box">
             <p th:text="${wish.name}"></p>
-            <p th:test="${wish.price}"></p>
+            <p th:text="${wish.price}"></p>
             <p th:text="${wish.urlLink}"></p>
         </div>
     </div>
-    <a href="/addWish">Add a new Wish!</a>
+    <a th:href="@{/addWish/{wishListID}(wishListID=${wishlist.wishListId})}">Add Wish</a>
 </main>
 
 <footer th:replace="~{layoutLoggedIn :: footer}"></footer>

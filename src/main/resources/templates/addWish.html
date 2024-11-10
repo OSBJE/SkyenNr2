@@ -13,6 +13,7 @@
 <main>
     <div class="wrapper">
         <form th:action="@{/saveWish}" th:object="${obj}" method="post">
+            <input type="hidden" name="wishListID" th:value="${wishListID}" />
             <h1>Add a new Wish!</h1>
             <div class="input-box">
                 <input type="text" name="name" placeholder="Chocolate box" th:field="*{name}" required>
