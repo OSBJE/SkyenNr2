@@ -2,6 +2,7 @@ package Oenskeskyen.Controller;
 import Oenskeskyen.Model.User;
 
 
+import Oenskeskyen.Model.Wish;
 import Oenskeskyen.Model.WishList;
 import Oenskeskyen.Service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -49,6 +50,25 @@ public class SessionController {
             return "redirect:/customer-page";
         } else {
             return "redirect:/login";
+        }
+    }
+
+    @GetMapping("/addWish")
+    public String createNewWish(Model model){
+        Wish obj = new Wish();
+        model.addAttribute("obj", obj);
+        return "addWish";
+    }
+
+    //Not working yet. keeps saying not finding wishListID when submitting in the html.
+    @PostMapping("/saveWish")
+    public String saveWish(@ModelAttribute Wish wishObj, @RequestParam("wishListID") int wishListID , HttpSession session){
+        User user = (User) session.getAttribute("user");
+        if(user != null){
+            userService.saveWish(wishObj, wishListID);
+            return "redirect:/viewWishList";
+        } else {
+            return "redirect:/customer-page";
         }
     }
 

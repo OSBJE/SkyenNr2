@@ -35,6 +35,10 @@ public class UserService {
         userRepository.saveNewWishList(obj.getName(), obj.getDescription(), userID);
     }
 
+    public void saveWish(Wish obj, int wishListID){
+        userRepository.saveWish(obj.getName(), obj.getPrice(), obj.getUrlLink(), wishListID);
+    }
+
     public List<WishList> getAllWishLists(int userID){
         return userRepository.getAllWishLists(userID);
     }
@@ -46,4 +50,5 @@ public class UserService {
     public List<Wish> getAllWishes(int wishListID){
         return userRepository.getAllWishes(wishListID);
     }
+
 }

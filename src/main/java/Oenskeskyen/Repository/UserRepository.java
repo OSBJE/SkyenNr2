@@ -11,10 +11,7 @@ import org.springframework.boot.logging.log4j2.Log4J2LoggingSystem;
 import org.springframework.stereotype.Repository;
 
 import javax.swing.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,6 +73,36 @@ public class UserRepository {
             stmt.executeUpdate();
 
         } catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void saveWish(String name, double price, String urlLink, int wishListID){
+        try{
+            String sqlString = "INSERT INTO Wish (WishName, WishPrice, WishLink) VALUES (?, ?, ?)";
+
+            PreparedStatement stmt = conn.prepareStatement(sqlString, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, name);
+            stmt.setDouble(2, price);
+            stmt.setString(3, urlLink);
+            stmt.executeQuery();
+
+            ResultSet generatedKeys = stmt.getGeneratedKeys();
+            int wishID = -1;
+            if(generatedKeys.next()){
+                wishID = generatedKeys.getInt(1);
+            }
+
+            if(wishID != -1){
+                String sqlLinking = "INSERT INTO Wishlist_Wishes (WishListID, WishID) VALUES (?, ?)";
+                PreparedStatement stmt2 = conn.prepareStatement(sqlLinking);
+                stmt2.setInt(1, wishListID);
+                stmt2.setInt(2, wishID);
+                stmt2.executeUpdate();
+            }
+
+
+        }catch(SQLException e){
             throw new RuntimeException(e);
         }
     }
