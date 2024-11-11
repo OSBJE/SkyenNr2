@@ -19,9 +19,6 @@ public class UserService {
         this.userRepository = repository;
     }
 
-
-
-
     /// **************************** Add and modify database functions ******************** ///
     public User getUser(String mail){
         return userRepository.getUser(mail);
@@ -58,4 +55,5 @@ public class UserService {
     public void deleteWishList(int wishListId){
         userRepository.deleteWishListFromData(wishListId);
     }
+
 }

@@ -139,7 +139,6 @@ public class SessionController {
         }
     }
 
-
     @GetMapping("/set_session_id")
     public String setSessionId(HttpServletRequest request){
         HttpSession session = request.getSession();
