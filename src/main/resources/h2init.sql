@@ -16,7 +16,7 @@ create table WishList(
                          WishListName varchar(100) not null,
                          WishListDescription varchar(100) not null,
                          UserID INT,
-                         constraint fk_UserId FOREIGN KEY (UserID) REFERENCES usercustomer(UserID) ON DELETE CASCADE
+                         FOREIGN KEY (UserID) REFERENCES usercustomer(UserID) ON DELETE CASCADE
 );
 
 create table Wish(
@@ -36,8 +36,9 @@ create table User_WishList(
 create table Wishlist_Wishes(
                                 WishListID int,
                                 WishID int,
+                                PRIMARY KEY (WishListID, WishID),
                                 FOREIGN KEY (WishListID) REFERENCES WishList(WishListID) ON DELETE CASCADE,
-                                FOREIGN KEY (WishID) REFERENCES Wish(WishID) ON DELETE CASCADE
+                                constraint fk_Wish FOREIGN KEY (WishID) REFERENCES Wish(WishID) ON DELETE CASCADE
 );
 
 insert into usercustomer
