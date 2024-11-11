@@ -20,6 +20,9 @@
         <div>
             <p th:text="${WishList.name}"></p>
             <p th:text="${WishList.description}"></p>
+            <form th:action="@{/deleteWishList/{wishListId}(wishListId=${WishList.wishListId})}" method="post">
+                <button type="submit">Delete Wishlist</button>
+            </form>
         </div>
         </a>
     </div>
