@@ -186,6 +186,19 @@ public class UserRepository {
         return listOfWishes;
     }
 
+    public void deleteUserFromData(int id){
+        String sqlString = "DELETE FROM usercustomer WHere UserID = ?";
+
+        try{
+            PreparedStatement stmt = conn.prepareStatement(sqlString);
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
+
     public User getUser(String mail){
         User obj = null;
 
@@ -215,7 +228,6 @@ public class UserRepository {
             throw new RuntimeException(e);
         }
         return obj;
-
     }
 
 }

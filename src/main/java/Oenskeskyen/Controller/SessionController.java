@@ -34,6 +34,24 @@ public class SessionController {
         return "redirect:/";
     }
 
+    @PostMapping("/deleteUser")
+    public String deleteUser(HttpSession session){
+        User obj = (User) session.getAttribute("user");
+        if(obj != null){
+            userService.deleteUser(obj.getId());
+            session.invalidate();
+            return "redirect:/";
+        }
+        return "redirect:/login";
+    }
+
+    @GetMapping("/profile")
+    public String profile(Model model){
+        User obj = new User();
+        model.addAttribute("obj", obj);
+        return "profile";
+    }
+
     @GetMapping("/wishlists")
     public String createNewWishList(Model model){
         WishList obj = new WishList();
@@ -70,12 +88,6 @@ public class SessionController {
     @GetMapping("/login")
     public String login(Model model){
         return "login";
-    }
-
-
-    @GetMapping("/profile")
-    public String profile(Model model){
-        return "profile";
     }
 
     @PostMapping("/loginValidation")

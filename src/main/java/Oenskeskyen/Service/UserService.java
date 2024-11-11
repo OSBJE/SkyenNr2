@@ -51,4 +51,7 @@ public class UserService {
         return userRepository.getAllWishes(wishListID);
     }
 
+    public void deleteUser(int id){
+        userRepository.deleteUserFromData(id);
+    }
 }
