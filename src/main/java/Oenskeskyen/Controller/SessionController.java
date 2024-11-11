@@ -2,8 +2,7 @@ package Oenskeskyen.Controller;
 import Oenskeskyen.Model.User;
 
 
-import Oenskeskyen.Model.Wish;
-import Oenskeskyen.Model.WishList;
+
 import Oenskeskyen.Service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -52,44 +51,6 @@ public class SessionController {
         return "profile";
     }
 
-    @GetMapping("/wishlists")
-    public String createNewWishList(Model model){
-        WishList obj = new WishList();
-        model.addAttribute("obj", obj);
-        return "addWishList";
-    }
-
-    @PostMapping("/saveWishList")
-    public String saveWishList(@ModelAttribute WishList wishListObj, HttpSession session){
-        User user =  (User)session.getAttribute("user");
-        if(user != null){
-            int userID = user.getId();
-            userService.saveWishList(wishListObj, userID);
-            return "redirect:/customer-page";
-        } else {
-            return "redirect:/login";
-        }
-    }
-
-    @GetMapping("/addWish/{wishListID}")
-    public String createNewWish(@PathVariable("wishListID") int wishListID, Model model){
-        Wish obj = new Wish();
-        model.addAttribute("obj", obj);
-        model.addAttribute("wishListID", wishListID);
-        return "addWish";
-    }
-
-    @PostMapping("/saveWish")
-    public String saveWish(@ModelAttribute Wish wishObj, @RequestParam("wishListID") int wishListID){
-        userService.saveWish(wishObj, wishListID);
-        return "redirect:/viewWishList/" + wishListID;
-    }
-
-    @PostMapping("/deleteWishList")
-    public String deleteWishList(int wishlistID){
-        userService.deleteWishList(wishlistID);
-        return "redirect:/customer-page";
-    }
 
     @GetMapping("/login")
     public String login(Model model){
@@ -115,29 +76,7 @@ public class SessionController {
         return "redirect:/login";
     }
 
-    @GetMapping("/customer-page")
-    public String costumerPage(Model model, HttpSession session){
-        User user = (User) session.getAttribute("user");
-        if(user != null){
-            model.addAttribute("user", user);
-            model.addAttribute("getAllWishLists", userService.getAllWishLists(user.getId()));
-            return "customer-page";
-        } else {
-            return "redirect:/login";
-        }
-    }
 
-    @GetMapping("/viewWishList/{wishListID}")
-    public String viewWishList(@PathVariable("wishListID") int wishListID, Model model){
-        WishList wishList = userService.getWishListById(wishListID);
-        if(wishList != null){
-            model.addAttribute("wishlist", wishList);
-            model.addAttribute("getAllWishes", userService.getAllWishes(wishListID));
-            return "viewWishList";
-        } else {
-            return "redirect:/customer-page";
-        }
-    }
 
     @GetMapping("/set_session_id")
     public String setSessionId(HttpServletRequest request){
@@ -145,6 +84,18 @@ public class SessionController {
         session.setAttribute("sessionId", session.getId());
         return "redirect:";
     }
+
+//    @GetMapping("/customer-page-load")
+//    public String costumerPage(Model model, HttpSession session){
+//        User user = (User) session.getAttribute("user");
+//        if(user != null){
+//            model.addAttribute("user", user);
+//            model.addAttribute("getAllWishLists", oenskeSkyenService.getAllWishLists(user.getId()));
+//            return "customer-page";
+//        } else {
+//            return "redirect:/login";
+//        }
+//    }
 
 
 }
