@@ -54,4 +54,8 @@ public class UserService {
     public void deleteUser(int id){
         userRepository.deleteUserFromData(id);
     }
+
+    public void deleteWishList(int wishListId){
+        userRepository.deleteWishListFromData(wishListId);
+    }
 }

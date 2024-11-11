@@ -44,7 +44,7 @@ public class SessionController {
         }
         return "redirect:/login";
     }
-
+    //need one for updating the user profile
     @GetMapping("/profile")
     public String profile(Model model){
         User obj = new User();
@@ -84,6 +84,13 @@ public class SessionController {
         userService.saveWish(wishObj, wishListID);
         return "redirect:/viewWishList/" + wishListID;
     }
+
+    @PostMapping("/deleteWishList")
+    public String deleteWishList(int wishlistID){
+        userService.deleteWishList(wishlistID);
+        return "redirect:/customer-page";
+    }
+
 
     @GetMapping("/login")
     public String login(Model model){

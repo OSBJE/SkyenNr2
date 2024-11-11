@@ -199,6 +199,19 @@ public class UserRepository {
         }
     }
 
+    public void deleteWishListFromData(int wishListID){
+        String sqlString = "DELETE FROM WishList WHERE WishListID = ?";
+
+        try{
+            PreparedStatement stmt = conn.prepareStatement(sqlString);
+            stmt.setInt(1, wishListID);
+            stmt.executeUpdate();
+
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
+
     public User getUser(String mail){
         User obj = null;
 
