@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head th:fragment="head">
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
 <header>
     <nav class="navigation" th:fragment="header">
         <div class="left-container">
-            <a class="home-link" href="/static/index.html">
+            <a class="home-link" href="/index.html">
                 <img class="logo-link" src="/Images/cloudLogo.png" alt="logo">
             </a>
             <img class="text-logo" src="/Images/logoTextImg.png" alt="textLogo">
         </div>
         <ul class="right-links">
-            <li>Home</li>
-            <li>Wishlists</li>
-            <li>Wishes</li>
-            <li>Profile</li>
-            <a class="create-user-link">
-                <li>Logout</li>
-            </a>
+            <a href="/customer-page"><li>Home</li></a>
+            <a href="/wishlists"><li>Wishlists</li></a>
+            <a href="/profile"><li>Profile</li></a>
+            <a href="logout" class="create-user-link"><li>Logout</li></a>
         </ul>
     </nav>
 </header>
 
-
+<main>
+    <div class="main-content" th:replace="~{::content}"></div>
+</main>
 
 <footer class="info-foot" th:fragment="footer">
     <div class="socials-container">
@@ -46,8 +46,6 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </footer>
-
-
 
 </body>
 </html>

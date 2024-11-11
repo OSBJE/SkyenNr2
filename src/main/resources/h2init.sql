@@ -14,8 +14,9 @@ create table usercustomer(
 create table WishList(
                          WishListID int auto_increment primary key,
                          WishListName varchar(100) not null,
+                         WishListDescription varchar(100) not null,
                          UserID INT,
-                         constraint fk_UserId FOREIGN KEY (UserID) REFERENCES usercustomer(UserID) ON DELETE CASCADE
+                         FOREIGN KEY (UserID) REFERENCES usercustomer(UserID) ON DELETE CASCADE
 );
 
 create table Wish(
@@ -46,7 +47,7 @@ insert into usercustomer
 insert into usercustomer
 (Fullname, Mail, UserPassWord) VALUES ('Lucas Modin', 'Lucas@Kea.com', 'Lucas1234');
 
-insert into WishList (WishListName, UserID) VALUES ('Lucas List', 3) ,('Oskar List', 1);
+insert into WishList (WishListName, WishListDescription, UserID) VALUES ('Lucas List', 'weddinglist', 3) ,('Oskar List', 'cake', 1);
 
 insert into Wish (WishName, WishPrice, WishLink) VALUES ('Sko',99.99,'URLLink1');
 insert into Wish (WishName, WishPrice, WishLink) VALUES ('bil',10000.01,'URLLinkBil');

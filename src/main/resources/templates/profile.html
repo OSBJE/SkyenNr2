@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Page</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header th:replace="~{layoutLoggedIn :: header}"></header>
+
+<main>
+    <form th:action="@{/deleteUser}" method="post">
+    <button type="submit">delete</button>
+    </form>
+
+</main>
+
+<footer th:replace="~{layoutLoggedIn :: footer}"></footer>
+</body>
+</html>
