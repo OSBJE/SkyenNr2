@@ -7,21 +7,23 @@
     margin: 0 auto;
 }
 
+.Centerlign {
+    align-items: center;
+}
 
 .boxCustomerPage {
-    /* Trying to reside the box*/
-    /*width: 100%; /* Ensure it fills the container */
-    /*height: 250px; /* Set a height (adjust as needed) */
 
-    background-color: #E0E0FF; /* Light blue color */
-    padding: 20px;
-    margin-bottom: 20px;
+    display: flex;           /* Use flexbox to align children */
+    flex-direction: column;  /* Stack items vertically */
+    justify-content: center; /* Center the children vertically */
+    align-items: center;     /* Center the children horizontally */
+    gap: 10px;               /* Space between the elements */
+    width: 350px;            /* Fixed width for the box */
+    height: 300px;           /* Fixed height for the box */
+    padding: 20px;           /* Padding inside the parent box */
+    margin: 0 auto;          /* Center the box within the parent container */
+    box-sizing: border-box;  /* Include padding in the total size */
 
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 
     background-size: cover; /* Makes the image cover the box */
     background-position: center; /* Centers the background image */
@@ -68,21 +70,25 @@
 .textInBox {
     background-color: rgba(255, 255, 255, 0.6); /* Semi-transparent background */
     border-radius: 25px; /* Round corners */
-    padding: 20px; /* Space inside the box */
+    padding: 10px 15px;  /* Space inside the box */
     color: #333; /* Text color */
-    font-size: 18px; /* Font size */
+    font-size: 16px; /* Font size */
     text-align: center; /* Center the text */
     backdrop-filter: blur(8px); /* Apply blur to the background behind the box */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Optional: add shadow to make the box stand out */
 
-    width: 80%; /* By default, text box takes full width */
-    max-width: 300px; /* Optional: max width */
+    width: 90%; /* The width of the text box is 90% of the parent */
+    height: 150px; /* Fixed height for each text box */
+    max-width: 100%; /* Ensure the box doesn’t exceed the parent width */
+    margin: 0 auto;  /* Center the text boxes within the parent */
+    display: flex;    /* Use flexbox inside the box to center text vertically */
+    justify-content: center; /* Vertically center the text */
+    align-items: center;     /* Horizontally center the text */
+    overflow: hidden; /
 
-    flex-wrap: wrap;
 }
 
 strong {
-    font-size: 2.5rem; /* Adjust as needed */
     font-weight: bold;
 }
 
