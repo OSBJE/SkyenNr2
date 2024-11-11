@@ -27,6 +27,15 @@ public class OenskeSkyenService {
         oenskeSkyenRepository.saveWish(obj.getName(), obj.getPrice(), obj.getUrlLink(), wishListID);
     }
 
+    public Wish getWishByWishListID(int wishListID, int wishId){
+        Integer wishGotten = oenskeSkyenRepository.getWishIdFromWishlist(wishListID, wishId);
+        if (wishGotten != null){
+            return oenskeSkyenRepository.getWishById(wishGotten);
+        } else {
+            return null;
+        }
+    }
+
     public List<WishList> getAllWishLists(int userID){
         return oenskeSkyenRepository.getAllWishLists(userID);
     }
@@ -41,6 +50,14 @@ public class OenskeSkyenService {
 
     public void deleteWishList(int wishListId){
         oenskeSkyenRepository.deleteWishListFromData(wishListId);
+    }
+
+    public void editWish(int wishId, Wish updatedWish) {
+        oenskeSkyenRepository.editWish(wishId, updatedWish);
+    }
+
+    public void deleteWish(int wishId){
+        oenskeSkyenRepository.deleteWish(wishId);
     }
 
 

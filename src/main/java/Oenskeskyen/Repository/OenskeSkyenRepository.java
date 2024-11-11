@@ -180,4 +180,70 @@ public class OenskeSkyenRepository {
         }
     }
 
+
+    //Helper method for getWishByWishListId
+    public Wish getWishById(int wishId) {
+        String sql = "SELECT WishID, WishName, WishPrice, WishLink FROM Wish WHERE WishID = ?";
+        Wish wish = null;
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, wishId);
+            ResultSet resultSet = stmt.executeQuery();
+            if (resultSet.next()) {
+                int id = resultSet.getInt("WishID");
+                String name = resultSet.getString("WishName");
+                double price = resultSet.getDouble("WishPrice");
+                String link = resultSet.getString("WishLink");
+                wish = new Wish(name, price, link, id);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error fetching wish by ID: " + e.getMessage(), e);
+        }
+        return wish;
+    }
+
+
+    public Integer getWishIdFromWishlist(int wishListId, int wishId) {
+        String sql = "SELECT WishID FROM Wishlist_Wishes WHERE WishListID = ? AND WishID = ?";
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, wishListId);
+            stmt.setInt(2, wishId);
+            ResultSet resultSet = stmt.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt("WishID");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error fetching WishID from Wishlist_Wishes: " + e.getMessage(), e);
+        }
+        return null;
+    }
+
+    public void editWish(int wishId, Wish wish) {
+        String sql = "UPDATE Wish SET WishName = ?, WishPrice = ?, WishLink = ? WHERE WishID = ?";
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, wish.getName());
+            stmt.setDouble(2, wish.getPrice());
+            stmt.setString(3, wish.getUrlLink());
+            stmt.setInt(4, wishId);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error updating wish: " + e.getMessage(), e);
+        }
+    }
+
+    public void deleteWish(int wishId) {
+        String sql = "DELETE FROM WISH WHERE WishID = ?";
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, wishId);
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error deleting wish: " + e.getMessage(), e);
+        }
+    }
+
 }

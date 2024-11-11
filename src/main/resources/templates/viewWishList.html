@@ -18,6 +18,12 @@
             <p th:text="${wish.name}"></p>
             <p th:text="${wish.price}"></p>
             <p th:text="${wish.urlLink}"></p>
+            <form th:action="@{/edit-wish/{wishListId}/{wishId}(wishListId=${wishlist.wishListId}, wishId=${wish.wishId})}" method="get">
+                <button type="submit">Edit Wish</button>
+            </form>
+            <form th:action="@{/delete-wish/{wishListId}/{wishId}(wishListId=${wishlist.wishListId}, wishId=${wish.wishId})}" method="post">
+                <button type="submit">Delete Wish</button>
+            </form>
         </div>
     </div>
     <a th:href="@{/addWish/{wishListID}(wishListID=${wishlist.wishListId})}">Add Wish</a>
