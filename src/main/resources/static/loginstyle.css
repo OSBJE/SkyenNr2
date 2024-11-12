@@ -86,6 +86,14 @@ main {
     border: 2px solid black;
 }
 
+.wrapper .btn:hover{
+    background: aliceblue;
+}
+
+.wrapper .btn:active{
+    background: white;
+}
+
 .wrapper .register-link{
     font-size: 14.5px;
     text-align: center;
@@ -99,4 +107,15 @@ main {
 
 .register-link a:hover{
     text-decoration: underline;
+}
+
+.wrapper .input-box p{
+    text-align: center;
+    font-size: 20px;
+    margin: 50px;
+    text-decoration: underline;
+}
+
+#one, #two, #three{
+    top: 13px
 }

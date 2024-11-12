@@ -5,39 +5,31 @@
     <title>Customer Page</title>
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/loginstyle.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
 <header th:replace="~{layoutLoggedIn :: header}"></header>
 
 <main>
-    <main>
-              <div class="wrapper">
-                <h1>Your Profile Data</h1>
-
-                <div class="input-box">
-                    <i class='bx bxs-user-plus'></i>
-                    <p th:text="${obj.getFullName()}">John Doe</p>
-                </div>
-
-                <div class="input-box">
-                    <p th:text="${obj.getMail()}">johndoe@example.com</p>
-                </div>
-
-                <div class="input-box">
-                    <p th:text="${obj.getPassWord()}">********</p>
-                </div>
-
-                <form th:action="@{/deleteUser}" method="post">
-                    <button type="submit">Delete Profile</button>
-                </form>
-            </div>
-
+    <div class="wrapper">
+        <h1>Your Profile Data</h1>
+        <div class="input-box">
+            <p th:text="${obj.getFullName()}">John Doe</p>
+            <i class='bx bx-user' id="one"></i>
         </div>
-    </main>
-
-
+        <div class="input-box">
+            <p th:text="${obj.getMail()}">johndoe@example.com</p>
+            <i class='bx bxs-envelope' id="two"></i>
+        </div>
+        <div class="input-box">
+            <p th:text="${obj.getPassWord()}">********</p>
+            <i class='bx bxs-lock-alt' id="three"></i>
+        </div>
+        <form th:action="@{/deleteUser}" method="post">
+            <button class="btn" type="submit">Delete Profile</button>
+        </form>
+    </div>
 </main>
-
 <footer th:replace="~{layoutLoggedIn :: footer}"></footer>
 </body>
 </html>
