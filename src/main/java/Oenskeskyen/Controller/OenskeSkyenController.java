@@ -54,9 +54,10 @@ public class OenskeSkyenController {
         return "redirect:/viewWishList/" + wishListID;
     }
 
-    @PostMapping("/deleteWishList/{wishListID}")
-    public String deleteWishList(@PathVariable("wishListID") int wishlistID){
-        oenskeSkyenService.deleteWishList(wishlistID);
+
+    @PostMapping("/deleteWishList/{wishListId}")
+    public String deleteWishList(@PathVariable("wishListId") int wishlistId){
+        oenskeSkyenService.deleteWishList(wishlistId);
         return "redirect:/customer-page";
     }
 
@@ -73,6 +74,41 @@ public class OenskeSkyenController {
 
 
     }
+
+    @GetMapping("/edit-wish/{wishListId}/{wishId}")
+    public String editWish(@PathVariable ("wishListId") int wishListId, @PathVariable("wishId") int wishId, Model model) {
+        Wish wish = oenskeSkyenService.getWishByWishListID(wishListId, wishId);
+        if (wish != null) {
+            model.addAttribute("wish", wish);
+            return "editWish";
+        } else {
+            return "redirect:/customer-page";
+        }
+    }
+
+    @PostMapping("/delete-wish/{wishListId}/{wishId}")
+    public String deleteWish(@PathVariable("wishId") int wishId,
+                             @PathVariable("wishListId") int wishListId) {
+        oenskeSkyenService.deleteWish(wishId);
+        return "redirect:/viewWishList/" + wishListId;
+
+    }
+
+    @PostMapping("/update-wish")
+    public String updateWish(@RequestParam("wishId") int wishId,
+                             @RequestParam("name") String name,
+                             @RequestParam("price") double price,
+                             @RequestParam("urlLink") String urlLink,
+                             @RequestParam("wishListId") int wishListId) {
+        Wish updatedWish = new Wish(name, price, urlLink, wishId);
+        oenskeSkyenService.editWish(wishId, updatedWish);
+        return "redirect:/viewWishList/" + wishListId;
+    }
+
+
+
+
+
 
     //talk to the others if this should belong in here, as the customer-page should be in sessions-controller
     //although to display the wishlist, it needs access to oenskeskyen repository since the logic belongs there
