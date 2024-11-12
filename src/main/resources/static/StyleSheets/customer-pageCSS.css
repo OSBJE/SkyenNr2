@@ -1,9 +1,20 @@
 
 /* Mapping of wishlist bokses */
 
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+main {
+    min-height: calc(100vh - 125px);
+    grid-template-columns: 1fr 1fr 1fr;
+    display: grid;
+}
+
 
 .containerCustomerPage {
-    max-width: 1200px;
+    max-width: 200px;
     margin: 0 auto;
 }
 
@@ -11,10 +22,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
+    grid-column: 1/4;
+    grid-row: 1;
+    flex-direction: column;
 }
 
 .boxCustomerPage {
+
+    grid-column: 1/4;
+    grid-row: 2;
 
     display: flex;           /* Use flexbox to align children */
     flex-direction: column;  /* Stack items vertically */
