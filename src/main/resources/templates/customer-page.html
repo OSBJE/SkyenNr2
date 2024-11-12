@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Customer Page</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c2y4qWy+eLIDB1dKZd+ZCqLyw+gI8LT0hCwX7QJQ7h74TH0CO94Workh9Wg8qyNS1" crossorigin="anonymous">
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/StyleSheets/customer-pageCSS.css">
 </head>
@@ -11,22 +10,19 @@
 <header th:replace="~{layoutLoggedIn :: header}"></header>
 
 
-
 <main>
-    <div class="Centerlign">
-        <strong>
-            <h1>Welcome, <span th:text="${session.user.fullName}"></span>!</h1>
-        </strong>
-    </div>
-    <div class="Centerlign">
-        <h1>Your Wish, is our command</h1>
-    </div>
 
+    <div class="Center">
+        <h1>Welcome, <span th:text="${session.user.fullName}"></span>!</h1>
+    </div>
+    <div class="Center">
+        <p>Your Wish, is our command</p>
+    </div>
 
     <div class="containerCustomerPage text-center">
         <div class="product-list">
             <th:block th:each="wishLists : ${getAllWishLists}">
-                <div class="col-md-4 col-sm-12 col-xs-12">
+                <div class="empty">
                         <div class="boxCustomerPage">
                             <div class="textInBox">
                                 <strong><p th:text="${wishLists.getName()}"></p></strong>
@@ -34,8 +30,10 @@
                             <div class="textInBox">
                                 <p th:text="${wishLists.getDescription()}"></p>
                             </div>
-                                <button class="btn btn-rosegold" th:href="@{/viewWishList/{wishListID}(wishListID=${wishLists.getWishListId()})}">Add a Wish</button>
-
+                                <button class="btn-rosegold" th:href="@{/viewWishList/{wishListID}(wishListID=${wishLists.getWishListId()})}">Add a Wish</button>
+                                <form th:action="@{/deleteWishList/{wishListID}(wishListID=${wishLists.getWishListId()})}" method="post">
+                                    <button class="btn-rosegold" type="submit">Delete</button>
+                                </form>
                         </div>
                 </div>
             </th:block>
@@ -46,5 +44,6 @@
 </main>
 
 <footer th:replace="~{layoutLoggedIn :: footer}"></footer>
+
 </body>
 </html>
