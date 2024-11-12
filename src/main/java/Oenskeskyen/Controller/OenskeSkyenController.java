@@ -54,6 +54,7 @@ public class OenskeSkyenController {
         return "redirect:/viewWishList/" + wishListID;
     }
 
+
     @PostMapping("/deleteWishList/{wishListId}")
     public String deleteWishList(@PathVariable("wishListId") int wishlistId){
         oenskeSkyenService.deleteWishList(wishlistId);

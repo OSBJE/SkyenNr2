@@ -45,8 +45,8 @@ public class SessionController {
     }
     //need one for updating the user profile
     @GetMapping("/profile")
-    public String profile(Model model){
-        User obj = new User();
+    public String profile(Model model, HttpSession session){
+        User obj = (User) session.getAttribute("user");
         model.addAttribute("obj", obj);
         return "profile";
     }

@@ -4,31 +4,49 @@
     <meta charset="UTF-8">
     <title>Customer Page</title>
     <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/StyleSheets/customer-pageCSS.css">
 </head>
 <body>
 <header th:replace="~{layoutLoggedIn :: header}"></header>
 
 
 <main>
-    <div class="banner">
+
+    <div class="Center">
         <h1>Welcome, <span th:text="${session.user.fullName}"></span>!</h1>
-        <img src="" alt="">
+        <p>Your Wish, is our command</p>
+    </div>
+    <div class="containerCustomerPage text-center">
+        <div class="product-list">
+            <th:block th:each="wishLists : ${getAllWishLists}">
+                <div class="empty">
+                        <div class="boxCustomerPage">
+                            <div class="textInBox">
+                                <strong><p th:text="${wishLists.getName()}"></p></strong>
+                            </div>
+                            <div class="textInBox">
+                                <p th:text="${wishLists.getDescription()}"></p>
+                            </div>
+                            <div>
+                            <form th:action="@{/viewWishList/{wishListID}(wishListID=${wishLists.getWishListId()})}" method="get">
+                                <button class="btn-rosegold" type="submit">Add a Wish</button>
+                            </form>
+                            </div>
+                            <div>
+                            <form th:action="@{/deleteWishList/{wishListID}(wishListID=${wishLists.getWishListId()})}" method="post">
+                                    <button class="btn-rosegold" type="submit">Delete</button>
+                            </form>
+                            </div>
+                        </div>
+                </div>
+            </th:block>
+        </div>
     </div>
 
-    <div th:each="WishList : ${getAllWishLists}">
-        <a th:href="@{/viewWishList/{wishListID}(wishListID=${WishList.wishListId})}">
-        <div>
-            <p th:text="${WishList.name}"></p>
-            <p th:text="${WishList.description}"></p>
-            <form th:action="@{/deleteWishList/{wishListId}(wishListId=${WishList.wishListId})}" method="post">
-                <button type="submit">Delete Wishlist</button>
-            </form>
-        </div>
-        </a>
-    </div>
 
 </main>
 
 <footer th:replace="~{layoutLoggedIn :: footer}"></footer>
+
 </body>
 </html>
