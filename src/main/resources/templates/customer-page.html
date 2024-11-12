@@ -28,10 +28,16 @@
                             <div class="textInBox">
                                 <p th:text="${wishLists.getDescription()}"></p>
                             </div>
-                                <button class="btn-rosegold" th:href="@{/viewWishList/{wishListID}(wishListID=${wishLists.getWishListId()})}">Add a Wish</button>
-                                <form th:action="@{/deleteWishList/{wishListID}(wishListID=${wishLists.getWishListId()})}" method="post">
+                            <div>
+                            <form th:href="@{/viewWishList/{wishListID}(wishListID=${wishLists.getWishListId()})}" method="get">
+                                <button class="btn-rosegold" type="button">Add a Wish</button>
+                            </form>
+                            </div>
+                            <div>
+                            <form th:action="@{/deleteWishList/{wishListID}(wishListID=${wishLists.getWishListId()})}" method="post">
                                     <button class="btn-rosegold" type="submit">Delete</button>
-                                </form>
+                            </form>
+                            </div>
                         </div>
                 </div>
             </th:block>
