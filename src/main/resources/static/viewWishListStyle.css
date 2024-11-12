@@ -75,3 +75,12 @@ h2, form {
 .banner-text h1{
     font-size: 100px;
 }
+
+.wish-items {
+    display: grid;
+    grid-template-columns: repeat(4, 0.22fr);
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    gap: 20px;
+}

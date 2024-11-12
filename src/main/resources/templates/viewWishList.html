@@ -17,6 +17,7 @@
         </div>
         <img src="/Images/gifts.jpg" alt="">
     </div>
+    <div class="wish-items">
     <div th:each="wish : ${getAllWishes}" class="wish-box">
             <h2 th:text="${wish.name}"></h2>
             <h2 th:text="${wish.price} + ' kr.'"></h2>
@@ -34,7 +35,7 @@
             </form>
         </div>
     </div>
-
+    </div>
     <form th:action="@{/addWish/{wishListID}(wishListID=${wishlist.wishListId})}" method="get">
         <button class="btn" type="submit">Add Wish</button>
     </form>
