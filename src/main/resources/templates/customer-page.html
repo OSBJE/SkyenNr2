@@ -29,8 +29,8 @@
                                 <p th:text="${wishLists.getDescription()}"></p>
                             </div>
                             <div>
-                            <form th:href="@{/viewWishList/{wishListID}(wishListID=${wishLists.getWishListId()})}" method="get">
-                                <button class="btn-rosegold" type="button">Add a Wish</button>
+                            <form th:action="@{/viewWishList/{wishListID}(wishListID=${wishLists.getWishListId()})}" method="get">
+                                <button class="btn-rosegold" type="submit">Add a Wish</button>
                             </form>
                             </div>
                             <div>
