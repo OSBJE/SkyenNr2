@@ -5,6 +5,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/loginstyle.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
 
@@ -18,15 +19,15 @@
             <h1>Edit your wish</h1>
             <div class="input-box">
                 <input type="text" name="name" th:value="${wish.name}" required>
-                <i class='bx bxs-envelope'></i>
+                <i class='bx bx-text' ></i>
             </div>
             <div class="input-box">
                 <input type="number" name="price" step="0.01" th:value="${wish.price}" required>
-                <i class='bx bxs-lock-alt'></i>
+                <i class='bx bx-purchase-tag-alt' ></i>
             </div>
             <div class="input-box">
                 <input type="text" name="urlLink" th:value="${wish.urlLink}" required>
-                <i class='bx bxs-lock-alt'></i>
+                <i class='bx bx-link-alt' ></i>
             </div>
             <button type="submit" class="btn">Save Changes</button>
         </form>
