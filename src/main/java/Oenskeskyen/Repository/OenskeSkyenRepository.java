@@ -6,6 +6,8 @@ import Oenskeskyen.Model.Wish;
 import Oenskeskyen.Model.WishList;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration;
+import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;

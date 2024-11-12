@@ -22,6 +22,12 @@ public class Wish {
         this.price = price;
     }
 
+    public Wish(String name, double price, String urlLink){
+        this.name = name;
+        this.price = price;
+        this.urlLink = urlLink;
+    }
+
     public Wish(String name, double price, String urlLink, int wishId){
         this.name = name;
         this.price = price;
