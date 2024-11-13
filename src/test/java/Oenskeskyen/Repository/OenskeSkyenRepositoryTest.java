@@ -96,7 +96,7 @@ public class OenskeSkyenRepositoryTest {
     @DirtiesContext
     void getWishByIdTest() {
         // Arrange
-        Wish wish = new Wish("Toy Car", 19.99, "www.toys.com");
+        Wish wish = new Wish("toy car", 19.99, "www.toys.com");
         oenskeSkyenRepository.saveWish(wish.getName(), wish.getPrice(), wish.getUrlLink(), 1);
 
         // Act
