@@ -172,7 +172,7 @@ public class OenskeSkyenRepositoryTest {
     @DirtiesContext
     void deleteWishListFromDataTest() {
         // Arrange
-        oenskeSkyenRepository.saveNewWishList("temp List", "to be deleted", 3);
+        oenskeSkyenRepository.saveNewWishList("temp list", "to be deleted", 3);
         WishList savedWishList = oenskeSkyenRepository.getWishListById(3);
         assertNotNull(savedWishList);
 
