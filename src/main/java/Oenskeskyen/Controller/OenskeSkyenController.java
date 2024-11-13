@@ -118,6 +118,7 @@ public class OenskeSkyenController {
         if(user != null){
             //model.addAttribute("user", user);
             model.addAttribute("getAllWishLists", oenskeSkyenService.getAllWishLists(user.getId()));
+            model.addAttribute("wishCount", oenskeSkyenService.getCountOfWishes(user.getId()));
             return "customer-page";
         } else {
             return "redirect:/login";

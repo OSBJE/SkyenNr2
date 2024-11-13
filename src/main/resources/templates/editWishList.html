@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Customer Page</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/loginstyle.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
-<body>
 
+<body>
+<header th:replace="~{layoutLoggedIn :: header}"></header>
+
+<main>
+    <div class="wrapper">
+        <form th:action="@{/saveWishList}" th:object="${obj}" method="post">
+            <h1>Create your own Wishlist!</h1>
+            <div class="input-box">
+                <input type="text" name="name" placeholder="Christmas wishes" th:field="*{name}" required>
+                <i class='bx bxs-folder'></i>
+            </div>
+            <div class="input-box">
+                <input type="text" name="description" placeholder="I hope santa will fulfil every wish i have. Even though i have been a naugty boy" th:field="*{description}" required>
+                <i class='bx bx-text' ></i>
+            </div>
+            <button type="submit" class="btn">Create</button>
+        </form>
+    </div>
+</main>
+
+<footer th:replace="~{layoutLoggedIn :: footer}"></footer>
 </body>
 </html>
