@@ -6,16 +6,16 @@ import Oenskeskyen.Model.Wish;
 import Oenskeskyen.Model.WishList;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration;
-import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
-public class OenskeSkyenRepository {
+@Repository("OENSKE_REPOSITORY_JDBC")
+@Lazy
+public class OenskeSkyenRepository implements InterfaceOenskeSkyenRepository {
 
 
     @Value("${spring.datasource.url}")
@@ -37,6 +37,7 @@ public class OenskeSkyenRepository {
     //remove problem with beans.
 
     @PostConstruct
+    @Override
     public void setConn() {
         this.conn = DBConnection.getConnection(dbUrl,dbUsername,dbPassword);
     }
@@ -45,6 +46,7 @@ public class OenskeSkyenRepository {
 
     /// **************************** Add and modify database functions ******************** ///
 //to create a new wishlist and assign it to a users userid. It is not visual
+    @Override
     public void saveNewWishList(String wishListName, String description, int userID){
         try{
             String sqlString = "insert into WishList (WishListName, WishListDescription, UserID) VALUES (?, ?, ?)";
@@ -60,6 +62,7 @@ public class OenskeSkyenRepository {
         }
     }
 
+    @Override
     public void saveWish(String name, double price, String urlLink, int wishListID){
         try{
             String sqlString = "INSERT INTO Wish (WishName, WishPrice, WishLink) VALUES (?, ?, ?)";
@@ -88,6 +91,7 @@ public class OenskeSkyenRepository {
         }
     }
 
+    @Override
     public List<WishList> getAllWishLists(int userID){
         List<WishList> usersWishLists = new ArrayList<>();
         String sql = "SELECT WishListID, WishListName, WishListDescription FROM WishList WHERE userid = ?";
@@ -118,6 +122,7 @@ public class OenskeSkyenRepository {
         return usersWishLists;
     }
 
+    @Override
     public WishList getWishListById(int wishListID) {
         String sql = "SELECT WishListName, WishListDescription, WishListID FROM WishList WHERE WishListID = ?";
         WishList wishList = null;
@@ -139,6 +144,7 @@ public class OenskeSkyenRepository {
         return wishList;
     }
 
+    @Override
     public List<Wish> getAllWishes(int wishListId){
         List<Wish> listOfWishes = new ArrayList<>();
         String sql1 = "SELECT WishID FROM Wishlist_Wishes WHERE WishListID = ?";
@@ -169,6 +175,7 @@ public class OenskeSkyenRepository {
         return listOfWishes;
     }
 
+    @Override
     public void deleteWishListFromData(int wishListID){
         String sqlString = "DELETE FROM WishList WHERE WishListID = ?";
 
@@ -204,7 +211,7 @@ public class OenskeSkyenRepository {
         return wish;
     }
 
-
+    @Override
     public Integer getWishIdFromWishlist(int wishListId, int wishId) {
         String sql = "SELECT WishID FROM Wishlist_Wishes WHERE WishListID = ? AND WishID = ?";
         try {
@@ -221,6 +228,7 @@ public class OenskeSkyenRepository {
         return null;
     }
 
+    @Override
     public void editWish(int wishId, Wish wish) {
         String sql = "UPDATE Wish SET WishName = ?, WishPrice = ?, WishLink = ? WHERE WishID = ?";
         try {
@@ -235,6 +243,7 @@ public class OenskeSkyenRepository {
         }
     }
 
+    @Override
     public void deleteWish(int wishId) {
         String sql = "DELETE FROM WISH WHERE WishID = ?";
 
