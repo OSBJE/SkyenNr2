@@ -22,7 +22,9 @@
                 <i class='bx bxs-envelope'></i>
             </div>
             <div class="input-box">
-                <input class="text-input" type="password" id="password" placeholder="Enter a password" required th:field="*{passWord}">
+                <input class="text-input" type="password" id="password" placeholder="Enter a password"
+                       required th:field="*{passWord}" minlength="12" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$"
+                       title="Min 1 lowercase, uppercase letter, and 1 number, 12 characters.">
                 <i class='bx bxs-lock-alt'></i>
             </div>
             <button type="submit" class="btn">Create user</button>
