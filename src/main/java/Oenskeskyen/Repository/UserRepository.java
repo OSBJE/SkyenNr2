@@ -4,6 +4,7 @@ import Oenskeskyen.Model.DBConnection;
 import Oenskeskyen.Model.User;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
 
 
@@ -11,8 +12,9 @@ import java.sql.*;
 
 
 
-@Repository
-public class UserRepository {
+@Repository("USER_REPOSITORY_JDBC")
+@Lazy
+public class UserRepository implements InterfaceUserRepository {
 
 
     @Value("${spring.datasource.url}")
@@ -34,12 +36,14 @@ public class UserRepository {
     //remove problem with beans.
 
     @PostConstruct
+    @Override
     public void setConn() {
         this.conn = DBConnection.getConnection(dbUrl,dbUsername,dbPassword);
     }
 
     /// **************************** Add and modify database functions ******************** ///
 
+    @Override
     public void saveNewUser(String fullname, String mail, String userPassword){
 
         try{
@@ -56,6 +60,7 @@ public class UserRepository {
         }
     }
 
+    @Override
     public void deleteUserFromData(int id){
         String sqlString = "DELETE FROM usercustomer WHere UserID = ?";
 
@@ -69,6 +74,7 @@ public class UserRepository {
         }
     }
 
+    @Override
     public User getUser(String mail){
         User obj = null;
 
