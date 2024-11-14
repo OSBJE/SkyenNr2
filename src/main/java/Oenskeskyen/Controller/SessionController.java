@@ -28,7 +28,7 @@ public class SessionController {
     }
 
     @PostMapping("/saveUser")
-    public String saveNewUser(@ModelAttribute User userObj, Model model){
+    public String saveNewUser(@ModelAttribute User userObj){
         userService.saveUserCostumer(userObj);
         return "redirect:/";
     }

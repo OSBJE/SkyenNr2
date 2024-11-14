@@ -59,8 +59,12 @@ public class OenskeSkyenRepositoryTest {
     @Test
     @DirtiesContext
     void saveWishTest(){
+        WishList wishList = new WishList("testList", "testDescription");
+        oenskeSkyenRepository.saveNewWishList(wishList.getName(), wishList.getDescription(), 1);
+        wishList = oenskeSkyenRepository.getWishListById(3);
+
+
         Wish wish = new Wish("ball", 10, "www.bob.dk");
-        WishList wishList = oenskeSkyenRepository.getWishListById(1);
         oenskeSkyenRepository.saveWish(wish.getName(), wish.getPrice(), wish.getUrlLink(), wishList.getWishListId());
         Wish actual = oenskeSkyenRepository.getWishById(4);
 
