@@ -29,5 +29,6 @@ public interface InterfaceOenskeSkyenRepository {
 
     void deleteWish(int wishId);
 
+    int showTotalCountOfWishes(int userID);
 }
 

@@ -256,7 +256,7 @@ public class OenskeSkyenRepository implements InterfaceOenskeSkyenRepository {
             throw new RuntimeException("Error deleting wish: " + e.getMessage(), e);
         }
     }
-
+    @Override
     public int showTotalCountOfWishes(int userID){
         int count = 0;
         String sql = "SELECT COUNT(*) FROM Wishlist_Wishes, WishList " +
