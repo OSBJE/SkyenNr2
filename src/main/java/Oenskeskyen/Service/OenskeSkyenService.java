@@ -3,7 +3,10 @@ package Oenskeskyen.Service;
 import Oenskeskyen.Model.User;
 import Oenskeskyen.Model.Wish;
 import Oenskeskyen.Model.WishList;
-import Oenskeskyen.Repository.OenskeSkyenRepository;
+import Oenskeskyen.Repository.InterfaceOenskeSkyenRepository;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,10 +14,10 @@ import java.util.List;
 @Service
 public class OenskeSkyenService {
 
-    private OenskeSkyenRepository oenskeSkyenRepository;
+    private InterfaceOenskeSkyenRepository oenskeSkyenRepository;
 
-    public OenskeSkyenService(OenskeSkyenRepository repository){
-        this.oenskeSkyenRepository = repository;
+    public OenskeSkyenService(ApplicationContext context, @Value("${oenskeskyen.repository.impl}") String impl){
+        oenskeSkyenRepository = (InterfaceOenskeSkyenRepository) context.getBean(impl);
     }
 
     /// **************************** Add and modify database functions ******************** ///
