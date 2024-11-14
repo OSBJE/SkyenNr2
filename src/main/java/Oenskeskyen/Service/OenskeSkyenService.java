@@ -63,5 +63,8 @@ public class OenskeSkyenService {
         oenskeSkyenRepository.deleteWish(wishId);
     }
 
+    public int getCountOfWishes(int userID){
+        return oenskeSkyenRepository.showTotalCountOfWishes(userID);
+    }
 
 }

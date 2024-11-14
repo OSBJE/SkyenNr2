@@ -9,12 +9,12 @@
 <body>
 <header th:replace="~{layoutLoggedIn :: header}"></header>
 
-
 <main>
 
     <div class="Center">
         <h1>Welcome, <span th:text="${session.user.fullName}"></span>!</h1>
         <p>Your Wish, is our command</p>
+        <p>Your Total Wishes: <span th:text="${wishCount}"></span></p>
     </div>
     <div class="containerCustomerPage text-center">
         <div class="product-list">
